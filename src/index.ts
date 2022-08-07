@@ -2,7 +2,6 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import config from './config';
 import router from './routes';
-import swaggerDocs from './swagger.json';
 
 const app: Application = express();
 const port: number = parseInt(config.port as string) || 5000;
