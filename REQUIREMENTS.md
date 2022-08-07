@@ -16,16 +16,16 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Users
 
--   Index [token required]: `'api/users/' [GET] (token)`
--   Show [token required]: `'api/users/:user_name' [GET] (token)`
--   Create (args: User)[token required]: `'api/users/' [POST] (token)`
+-   Index [token required]: `'/api/users/' [GET] (token_requied)`
+-   Show [token required]: `'/api/users/:user_name' [GET] (token_requied)`
+-   Create (args: User)[token required]: `'/api/users/' [POST] (token_requied)`
 -   Authenticate(arge: user_name, password) `'api/users/auth' [POST]`
 
 #### Orders
 
--   Current Order by user [token required]: `'api/orders/active' => get userId from token [GET] (token)`
--   [OPTIONAL] Completed Orders by user [token required]: `'api/orders/completed' => get userId from token [GET] (token)`
--   [ADDED] Update order's status [token required]: `'api/orders' => get userId from token [PUT] (token)`
+-   Current Order by user [token required]: `'/api/orders/active' => get userId from token [GET] (token_requied)`
+-   [OPTIONAL] Completed Orders by user [token required]: `'/api/orders/compelate' => get userId from token [GET] (token_requied)`
+-   [ADDED] Update order's status [token required]: `'/api/orders' => get userId from token [PUT] (token_requied)`
 
 ## Data Shapes
 
