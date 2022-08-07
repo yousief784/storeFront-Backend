@@ -24,7 +24,7 @@ class OrderController {
                 token as string,
                 config.tokenSecret as string
             );
-            const userId = Object.assign(decode as object).getUserInfo.id;
+            const userId = Object.assign(decode as object).createNewUser.id;
 
             const { product_id, quantity } = req.body;
 
@@ -59,7 +59,8 @@ class OrderController {
                 token as string,
                 config.tokenSecret as string
             );
-            const userId = Object.assign(decode as object).getUserInfo.id;
+            const userId = Object.assign(decode as object).createNewUser.id;
+
             const getOrders = await orderModel.getOrderByStatusDependOnAuthUser(
                 userId,
                 req.params.status
@@ -93,7 +94,7 @@ class OrderController {
                 token as string,
                 config.tokenSecret as string
             );
-            const userId = Object.assign(decode as object).getUserInfo.id;
+            const userId = Object.assign(decode as object).createNewUser.id;
 
             const purchase = await orderModel.purchaseDependOnAuthUser(userId);
             if (!purchase) {

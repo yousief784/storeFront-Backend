@@ -32,7 +32,6 @@ describe('Order Model', () => {
         const createUser: User = {
             first_name: 'Yousief',
             last_name: 'Noaman',
-            user_name: 'yousief784',
             password: 'yousief784',
         };
 

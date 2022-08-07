@@ -13,11 +13,10 @@ const userModel = new UserModel();
 const categoryModel = new CategoryModel();
 const productModel = new ProductModel();
 
-describe('Category API Endpoints', () => {
+describe('Order API Endpoints', () => {
     const createUser: User = {
         first_name: 'Yousief',
         last_name: 'Noaman',
-        user_name: 'yousief784',
         password: 'yousief784',
     };
 
@@ -34,15 +33,9 @@ describe('Category API Endpoints', () => {
     let orderId: string;
     let token: string;
     beforeAll(async () => {
-        const user = await userModel.create(createUser);
-        createUser.id = user.id;
-
-        const authUser = await req.post('/api/users/auth').send({
-            user_name: createUser.user_name,
-            password: createUser.password,
-        });
-
-        token = authUser.body.data.token;
+        const user = await req.post('/api/users').send(createUser);
+        createUser.id = user.body.data.id;
+        token = user.body.data.token;
 
         const category = await categoryModel.create(createCategory);
         createCategory.id = category.id;

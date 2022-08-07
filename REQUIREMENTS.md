@@ -6,53 +6,37 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 
-#### Products
-
--   Index: `'/api/products' [GET]`
--   Show: `'/api/products/:id' [GET]`
--   Create (args: Product)[token required]: `'/api/products' [POST] (token_required)`
--   [OPTIONAL] Top 5 most popular products
--   [OPTIONAL] Products by category: `'/api/products/category/category_id' [GET]`
+`The best way to run project, below`
 
 #### Users
 
--   Index [token required]: `'/api/users/' [GET] (token_requied)`
--   Show [token required]: `'/api/users/:user_name' [GET] (token_requied)`
 -   Create (args: User)[token required]: `'/api/users/' [POST] (token_requied)`
--   Authenticate(arge: user_name, password) `'api/users/auth' [POST]`
+-   Index [token required]: `'/api/users/' [GET] (token_requied)`
+-   Show [token required]: `'/api/users/:id' [GET] (token_requied)`
+
+#### Category
+
+-   Create (args: Category)[token required]: `'/api/categories/' [POST] (token_requied)`
+-   Index [token required]: `'/api/categories/' [GET] (token_requied)`
+
+#### Products
+
+-   Create (args: Product)[token required]: `'/api/products' [POST] (token_required)`
+-   Index: `'/api/products' [GET]`
+-   Show: `'/api/products/:id' [GET]`
+-   [OPTIONAL] Top 5 most popular products
+-   [OPTIONAL] Products by category: `'/api/products/category/category_id' [GET]`
 
 #### Orders
 
 -   Current Order by user [token required]: `'/api/orders/active' => get userId from token [GET] (token_requied)`
--   [OPTIONAL] Completed Orders by user [token required]: `'/api/orders/compelate' => get userId from token [GET] (token_requied)`
+
 -   [ADDED] Update order's status [token required]: `'/api/orders' => get userId from token [PUT] (token_requied)`
+
+-   [OPTIONAL] Completed Orders by user [token required]: `'/api/orders/compelate' => get userId from token [GET] (token_requied)`
 
 ## Data Shapes
 
-#### Category
-
--   id
--   name
-
-```
-Table: categories(
-    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
-)
-```
-
-#### Product
-
--   id
--   name
--   price
--   [OPTIONAL] category
-
-```
-Table: products(id uuid DEFAULT uuid_generate_v4() PRIMARY KEY, name VARCHAR(50) NOT NULL,
-    price NUMERIC NOT NULL,
-    category_id uuid REFERENCES categories(id) ON DELETE CASCADE
-)
 ```
 
 #### User
@@ -60,18 +44,49 @@ Table: products(id uuid DEFAULT uuid_generate_v4() PRIMARY KEY, name VARCHAR(50)
 -   id
 -   first_name
 -   last_name
--   user_name
 -   password
 
 ```
+
 Table: users(
-    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50),
-    user_name VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(200) NOT NULL
+id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50),
+password VARCHAR(200) NOT NULL
 )
+
 ```
+
+
+#### Category
+
+-   id
+-   name
+
+```
+
+Table: categories(
+id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+name VARCHAR(50) NOT NULL
+)
+
+```
+
+#### Product
+
+-   id
+-   name
+-   price
+-   [OPTIONAL] category_id
+
+```
+
+Table: products(
+id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+price NUMERIC NOT NULL,
+category_id uuid REFERENCES categories(id) ON DELETE CASCADE
+)
 
 #### Orders
 
