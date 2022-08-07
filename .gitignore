@@ -67,6 +67,8 @@ typings/
 
 dist/
 
+src/swagger.json
+
 # Yarn Integrity file
 .yarn-integrity
 
