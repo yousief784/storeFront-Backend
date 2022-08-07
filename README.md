@@ -14,6 +14,10 @@ The database schema and and API route found in the [REQUIREMENT.md](REQUIREMENTS
 -   Reset database: `npm run migrate:reset`
 -   to Build and start js server: `npm run startjs`
 
+#### Notes
+
+    Instead of handler Folder i use controller Folder
+
 ### Database Creation
 
 ```sh
