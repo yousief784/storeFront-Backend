@@ -1,0 +1,487 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "User Operations"
+    },
+    {
+      "name": "Categories",
+      "description": "Categories Operations"
+    }
+  ],
+  "paths": {
+    "/api/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create New User",
+        "description": "Create New User",
+        "requestBody": {
+          "description": "Create a new pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "format": "varchar(50)",
+                    "example": "Yousief"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "format": "varchar(50)",
+                    "example": "Noaman"
+                  },
+                  "user_name": {
+                    "type": "string",
+                    "format": "varchar(50)",
+                    "example": "yousief784"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "varchar(50)",
+                    "example": "yousief784"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can't Create Accound"
+          }
+        }
+      },
+      "get": {  
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get All Users[token required]",
+        "description": "Get All Users",
+        "operationId": "Get All Users",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can't find users"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Authenticate",
+        "description": "required looged in",
+        "requestBody": {
+          "description": "Get Valid Token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_name": {
+                    "type": "string",
+                    "example": "yousief784"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "yousief784"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can't Create Accound"
+          }
+        }
+      }
+    },
+    
+    "/api/users/{user_name}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User By Username[token required]",
+        "description": "Get User By Username",
+        "parameters": [
+          {
+            "name": "user_name",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use yousief784 for testing.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can't Create Accound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    
+    "/api/categories": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create New Category",
+        "description": "Create New Category",
+        "requestBody": {
+          "description": "Create a new pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Technologies"
+                    }
+                  }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can't Get All Categories"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get All Categories",
+        "description": "Get All Categories",
+        "operationId": "Get All Categories",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cant't Get All Categories"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+
+    "/api/products": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create New Product[token_required]",
+        "description": "Create New Product",
+        "requestBody": {
+          "description": "Create a new Proudct in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Technologies"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "example": 5000
+                    }
+                  }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Can't Get All Categories"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get All Categories",
+        "description": "Get All Categories",
+        "operationId": "Get All Categories",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cant't Get All Categories"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Users": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "uuid",
+            "format": "string",
+            "example": "0e2283a5-112c-41bc-94e9-703747b17d48"
+          },
+          "first_name": {
+            "type": "string",
+            "format": "varchar(50)",
+            "example": "Yousief"
+          },
+          "last_name": {
+            "type": "string",
+            "format": "varchar(50)",
+            "example": "Noaman"
+          },
+          "user_name": {
+            "type": "string",
+            "format": "varchar(50)",
+            "example": "yousief784"
+          },
+          "password": {
+            "type": "string",
+            "format": "varchar(50)",
+            "example": "yousief784"
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "Categories": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "uuid",
+            "format": "string",
+            "example": "0e2283a5-112c-41bc-94e9-703747b17d48"
+          },
+          "name": {
+            "type": "string",
+            "format": "string",
+            "example": "Technologies"
+          }
+        },
+        "xml": {
+          "name": "Categories"
+        }
+      },
+      "Products": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "uuid",
+            "format": "string",
+            "example": "0e2283a5-112c-41bc-94e9-703747b17d48"
+          },
+          "name": {
+            "type": "string",
+            "format": "string",
+            "example": "Mobile"
+          },
+          "price": {
+            "type": "numeric",
+            "example": 5000
+          },
+          "category_id": {
+            "$ref": "#/components/schemas/Categories#/id"
+          }
+        },
+        "xml": {
+          "name": "Products"
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "uuid",
+            "format": "string",
+            "example": "0e2283a5-112c-41bc-94e9-703747b17d48"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "tag"
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      }
+    },
+    "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "description": "JWT Authorization header using the Bearer scheme.",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}
