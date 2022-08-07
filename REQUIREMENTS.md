@@ -37,8 +37,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 
-```
-
 #### User
 
 -   id
@@ -87,6 +85,7 @@ name VARCHAR(50) NOT NULL,
 price NUMERIC NOT NULL,
 category_id uuid REFERENCES categories(id) ON DELETE CASCADE
 )
+```
 
 #### Orders
 
